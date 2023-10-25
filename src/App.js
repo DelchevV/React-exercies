@@ -1,39 +1,23 @@
 
 import './App.css';
+import { useState } from 'react';
 
 import { Player } from './User'
 
 function App() {
-  const names = ['Pedro', 'Jake', 'jessica', 'Mike', 'Dustin'];
-  const players = [
-    { name: 'Pedro', age: 12 },
-    { name: 'Ivan', age: 16 },
-    { name: 'Mike', age: 22 },
-  ]
+  const [showText, setShowText] = useState(true);
 
-  const planets = [
-    {name: 'Mars' , isGasPlanet: false},
-    {name: 'Earth' , isGasPlanet: false},
-    {name: 'Jupiter' , isGasPlanet: true},
-    {name: 'Venus' , isGasPlanet: false},
-    {name: 'Neptune' , isGasPlanet: true},
-    {name: 'Uranus' , isGasPlanet: true},
-  ]
+  const hideOrShow = (e) => {
+    setShowText(showText ? false : true)
+  };
   return (
 
     <div className="App">
-      {planets.map((value,key)=>{
-         return value.isGasPlanet && <Planet name={value.name} />
-      })}
+      <button onClick={hideOrShow}>Show/Hide</button>
+      {showText === true && <h1>Hello there!</h1>}
     </div>
+
   );
-}
-const Planet=(props)=>{
-  return(
-    <div>
-      <h1>{props.name} is gas planet</h1>
-    </div>
-  )
 }
 
 export default App;
