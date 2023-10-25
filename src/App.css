@@ -50,6 +50,7 @@ button{
     background-color: blueviolet;
     border: none;
     border-radius: 10px;
+    margin: 10px;
 }
 button:hover{
     color: azure;
