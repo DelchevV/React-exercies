@@ -1,47 +1,28 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Axios from 'axios'
-
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import {Home} from './pages/Home'
+import {Contact} from './pages/Contact'
+import {Menu} from './pages/Menu'
+import {Error404} from './pages/Error404'
+import {Navbar} from './Navbar'
 
 
 function App() {
-  const [excuse, setExcuse]=useState('')
-  
-
-  const fetchFamilyExcuse= ()=>{
-    Axios.get('https://excuser-three.vercel.app/v1/excuse/family/').then((response)=>{
-      setExcuse(response.data[0].excuse)
-    })
-  }
-
-  const fetchPartyExcuse= ()=>{
-    Axios.get('https://excuser-three.vercel.app/v1/excuse/party/').then((response)=>{
-      setExcuse(response.data[0].excuse)
-    })
-  }
-
-  const fetchOfficeExcuse= ()=>{
-    Axios.get('https://excuser-three.vercel.app/v1/excuse/office/').then((response)=>{
-      setExcuse(response.data[0].excuse)
-    })
-  }
-
-  const fetchGamingExcuse= ()=>{
-    Axios.get('https://excuser-three.vercel.app/v1/excuse/gaming/').then((response)=>{
-      setExcuse(response.data[0].excuse)
-    })
-  }
- 
-
   return (
     <div className="App">
-      <h1>Excuses Generator</h1>
-      <button onClick={fetchFamilyExcuse}>Family</button>
-      <button onClick={fetchPartyExcuse}>Party</button>
-      <button onClick={fetchOfficeExcuse}>Office</button>
-      <button onClick={fetchGamingExcuse}>Gaming</button>
+      <Router>
+        <Navbar/>
+        <Routes>
+          <Route path='/'element={<Home/>}/>
+          <Route path='/menu'element={<Menu/>}/>
+          <Route path='/contact'element={<Contact/>}/>
+          <Route path='*' element={<Error404/>}/>
 
-      <h1>{excuse}</h1>
+
+        </Routes>
+      </Router>
     </div>
   );
 }
