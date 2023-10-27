@@ -9,6 +9,7 @@ export const Form = () => {
         fullName: yup.string().required('Your full name is required!'),
         email: yup.string().email().required(),
         age: yup.number().positive().integer().min(18).required(),
+        occupation: yup.string().required(),
         password: yup.string().min(4).max(20).required(),
         confirmPassword: yup.string().oneOf([yup.ref('password'), null],"Password doesn't match").required(),
     });
@@ -29,7 +30,8 @@ export const Form = () => {
             <p>{errors.email?.message}</p>
             <input type="number" placeholder="Age..." {...register('age')} />
             <p>{errors.age?.message}</p>
-
+            <input type="text" placeholder="Occupation..." {...register('occupation')} />
+            <p>{errors.occupation?.message}</p>
             <input type="password" placeholder="Password..." {...register('password')} />
             <p>{errors.password?.message}</p>
             <input type="password" placeholder="Confirm Password..." {...register('confirmPassword')} />
